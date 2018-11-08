@@ -71,7 +71,18 @@ namespace CustomLists
                 originalArray = new T[Count];
                 originalArray = tempArray;
             }
-           
+        }
+
+
+        public void ConvertMethod(T objectsInList)
+        {
+            StringBuilder emptyString = new StringBuilder();
+
+            for (int i = 0; i < Count; i++)
+            {
+                emptyString.Append(originalArray[i] + " ");
+            }   
+
         }
     }
 }
