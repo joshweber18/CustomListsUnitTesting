@@ -10,7 +10,7 @@ namespace CustomLists
     {
 
         T[] originalArray;
-        int Count;
+        int count;
 
         public T this[int i]
         {
@@ -18,30 +18,38 @@ namespace CustomLists
             set { originalArray[i] = value; }
         }
 
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
+
         public CustomList()
         {
-            Count = 0;
-            originalArray = new T[Count];
+            count = 0;
+            originalArray = new T[count];
         }
 
         public void Add(T value)
         {
-            if (Count == 0)
+            if (count == 0)
             {
-                Count++;
-                T[] tempArray = new T[Count];
-                tempArray[Count - 1] = value;
+                count++;
+                T[] tempArray = new T[count];
+                tempArray[count - 1] = value;
                 originalArray = tempArray;
             }
             else
             {
-                Count++;
-                T[] tempArray = new T[Count];
-                for (int i = 0; i < Count - 1; i++)
+                count++;
+                T[] tempArray = new T[count];
+                for (int i = 0; i < count - 1; i++)
                 {
                     tempArray[i] = originalArray[i];
                 }
-                tempArray[Count - 1] = value;
+                tempArray[count - 1] = value;
                 originalArray = tempArray;
             }
         }
@@ -61,8 +69,8 @@ namespace CustomLists
             if (contains)
             {
                 int j = 0;
-                T[] tempArray = new T[Count - 1];
-                for (int i = 0; i < Count; i++, j++)
+                T[] tempArray = new T[count - 1];
+                for (int i = 0; i < count; i++, j++)
                 {
                     if (!value.Equals(originalArray[i]))
                     {
@@ -73,8 +81,8 @@ namespace CustomLists
                         j--;
                     }
                 }
-                Count = Count - 1;
-                originalArray = new T[Count];
+                count = count - 1;
+                originalArray = new T[count];
                 originalArray = tempArray;
             }
         }
@@ -84,20 +92,10 @@ namespace CustomLists
         {
             StringBuilder emptyString = new StringBuilder();
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 emptyString.Append(originalArray[i] + " ");
             }
-        }
-
-        public void CountMethod(T value)
-        {
-            int objectValue = 0;
-            for (int i = 0; i < Count; i++) ;
-            {
-                originalArray[i] = objectValue;
-            }
-            objectValue++;
         }
     }
 }
