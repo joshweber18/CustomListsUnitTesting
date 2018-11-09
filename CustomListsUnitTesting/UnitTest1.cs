@@ -54,14 +54,13 @@ namespace CustomListsUnitTesting
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void Add4Test()
         {
             // Arrange
             CustomList<int> list = new CustomList<int>();
-            CustomList<int> list2 = new CustomList<int>();
             int expected = 1000;
-            CustomList<int> actual = new CustomList<int>();
+            int actual;
             // Act
             for (int i = 0; i < 1000; i++)
             {
@@ -76,54 +75,86 @@ namespace CustomListsUnitTesting
         [TestMethod]
         public void IndexOutOfRangeTest()
         {
-            // Arrange
-            CustomList<int> list = new CustomList<int>();
-
-            // Act
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
-            int x = list[4];
-
-            // Assert
-        }
-
-        [TestMethod]
-        public void RemoveFromListTest()
-        {
             /// TODO: FINISH TEST FOR COUNT
             // Arrange
             CustomList<int> list = new CustomList<int>();
-            int expected = 2;
-            int actual = list.count;
-
-            // Act
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
-            list.Remove[1];
-
-            // Assert
-            Assert.AreEqual
-        }
-
-        [TestMethod]
-        public void RemoveFromListTest()
-        {
-            // Arrange
-            CustomList<int> list = new CustomList<int>();
-            bool expected = true;
+            bool expected = false;
             bool actual;
 
             // Act
             list.Add(1);
             list.Add(2);
             list.Add(3);
-            
-            actual = list.Remove(1);
+            list.Remove(8);
+            actual;
 
             // Assert
-            Assert.AreEqual
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveFromListTest()
+        {
+            // Arrange
+            CustomList<int> list = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // Act
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Remove(1);
+            actual = list.Count;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove2FromListTest()
+        {
+            CustomList<int> list = new CustomList<int>();
+            int expected = 1;
+            int actual;
+
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Remove(1);
+            list.Remove(2);
+            actual = list.Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ConvertToString()
+        {
+            CustomList<int> list = new CustomList<int>();
+            string expected = "1 ,2 ,3";
+            string actual;
+
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.ToString();
+            actual = list.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        public void CustomListClassZip()
+        {
+            CustomList<int> list = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+
+            list.Add(1);
+            list.Add(2);
+            list2.Add(3);
+            list2.Add(4);
+            list2.Add(5);
+            list = list.ZipperMethod(list2);
         }
     }
 }

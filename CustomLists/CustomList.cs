@@ -12,6 +12,13 @@ namespace CustomLists
         T[] originalArray;
         int count;
 
+
+        public CustomList()
+        {
+            count = 0;
+            originalArray = new T[count];
+        }
+
         public T this[int i]
         {
             get { return originalArray[i]; }
@@ -26,11 +33,6 @@ namespace CustomLists
             }
         }
 
-        public CustomList()
-        {
-            count = 0;
-            originalArray = new T[count];
-        }
 
         public void Add(T value)
         {
@@ -88,14 +90,62 @@ namespace CustomLists
         }
 
 
-        public void ToString(T value)
+        public override string ToString()
         {
             StringBuilder emptyString = new StringBuilder();
 
             for (int i = 0; i < count; i++)
             {
-                emptyString.Append(originalArray[i] + " ");
+                if (i != count - 1)
+                {
+                    emptyString.Append(originalArray[i] + " ,");
+                }
+                else
+                {
+                    emptyString.Append(originalArray[i]);
+                }
             }
+            var theThing = emptyString.ToString();
+            return theThing;
+        }
+
+
+        public CustomList<T> Zipper(CustomList<T> list2)
+        {
+
+            CustomList<T> newList = new CustomList<T>();
+            CustomList<T> longerCount = new CustomList<T>();
+            CustomList<T> shorterCount = new CustomList<T>();
+            bool outOfValue = false;
+​
+            if (Count > list2.Count)
+            {
+                longerCount = this;
+                shorterCount = list2;
+            }
+            else if (Count < list2.Count)
+            {
+                longerCount = list2;
+                shorterCount = this;
+            }
+                for (int i = 0; i < longerCount.Count; i++)
+                {
+                while (i < shorterCount.Count)
+                {
+                    newList.Add(shorterCount[i]);
+                    newList.Add(longerCount[i]);
+                }
+                    if (i > shorterCount.Count - 1)
+                    {
+                        outOfValue = true;
+                    }
+​
+                if (outOfValue)
+                {
+                    newList.Add(longerCount[i]);
+                }
+            }
+            return newList;
         }
     }
 }
