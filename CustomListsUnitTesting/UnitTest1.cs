@@ -73,23 +73,21 @@ namespace CustomListsUnitTesting
         }
 
         [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void IndexOutOfRangeTest()
         {
             /// TODO: FINISH TEST FOR COUNT
             // Arrange
             CustomList<int> list = new CustomList<int>();
-            bool expected = false;
-            bool actual;
+            int actual;
 
             // Act
             list.Add(1);
             list.Add(2);
             list.Add(3);
             list.Remove(8);
-            actual;
+            actual = list[5];
 
-            // Assert
-            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -154,7 +152,7 @@ namespace CustomListsUnitTesting
             list2.Add(3);
             list2.Add(4);
             list2.Add(5);
-            list = list.ZipperMethod(list2);
+            list = list.Zipper(list2);
         }
     }
 }

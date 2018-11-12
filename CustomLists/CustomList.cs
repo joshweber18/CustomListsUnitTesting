@@ -108,41 +108,68 @@ namespace CustomLists
             var theThing = emptyString.ToString();
             return theThing;
         }
-
-
-        public CustomList<T> Zipper(CustomList<T> list2)
+  
+        public CustomList<T> ZipperMethod(CustomList<T> list2)
         {
-
             CustomList<T> newList = new CustomList<T>();
-            CustomList<T> longerCount = new CustomList<T>();
-            CustomList<T> shorterCount = new CustomList<T>();
-            bool outOfValue = false;
-​
-            if (Count > list2.Count)
+
+            for (int i = 0; i < Count && i < list2.Count; i++)
             {
-                longerCount = this;
-                shorterCount = list2;
+                    newList.Add(this[i]);
+                    newList.Add(list2[i]);
             }
-            else if (Count < list2.Count)
+            return newList;
+        }
+
+        public static CustomList<T> operator+(CustomList<T> list2, CustomList<T> list)
+        {
+            CustomList<T> newList = new CustomList<T>();
+
+            for (int i = 0; i < list.Count; i++)
             {
-                longerCount = list2;
-                shorterCount = this;
+                newList.Add(list[i]);
             }
-                for (int i = 0; i < longerCount.Count; i++)
+
+            for (int i = 0; i < list2.Count; i++)
+            {
+                newList.Add(list2[i]);
+            }
+            return newList;
+        }
+
+        public static CustomList<T> operator-(CustomList<T> list2, CustomList<T> list)
+        {
+            CustomList<T> newList = new CustomList<T>();
+
+            bool contains = false;
+            bool contain = false;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Equals(value))
                 {
-                while (i < shorterCount.Count)
-                {
-                    newList.Add(shorterCount[i]);
-                    newList.Add(longerCount[i]);
+                    contains = true;
+                    break;
                 }
-                    if (i > shorterCount.Count - 1)
-                    {
-                        outOfValue = true;
-                    }
-​
-                if (outOfValue)
+                if (list2[i].Equals(value))
                 {
-                    newList.Add(longerCount[i]);
+                    contain = true;
+                    break;
+                }
+            }
+
+            if (contains)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    newList.Remove(list.[i]);
+                }
+            }
+            if (contain)
+            {
+                for (int i = 0; i < list2.Count; i++)
+                {
+                    newList.Remove(list2[i]);
                 }
             }
             return newList;

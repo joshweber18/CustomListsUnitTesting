@@ -19,13 +19,10 @@ namespace CustomLists
             test.Add(5);
             test.Add(6);
             test.Add(7);
-
-            test.Add(8, test);
-
+            test.Add(8);
             test.ToString();
 
-
-            test.ZipperMethod(test2);
+            test.Zipper(test2);
         }
     }
 }
